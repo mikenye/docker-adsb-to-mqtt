@@ -14,7 +14,11 @@ while true
         nowdelta=$((NOW - nowold))
         messagesdelta=$((MESSAGES - messagesold))
 
-        RATE=$(echo "$messagesdelta $nowdelta /p" | dc)
+        if [[ "$nowdelta" -gt "0" ]]; then
+            RATE=$(echo "$messagesdelta $nowdelta /p" | dc)
+        else
+            RATE=0
+        fi
         AC_POS=$(curl --silent "$AIRCRAFT_JSON_URL" | jq '[.aircraft[] | select(.seen_pos)] | length')
         AC_TOT=$(curl --silent "$AIRCRAFT_JSON_URL" | jq '[.aircraft[] | select(.seen < 60)] | length')
         DUMP="Aircraft:$AC_TOT\nPosition:$AC_POS\nMsg/s:$RATE"
