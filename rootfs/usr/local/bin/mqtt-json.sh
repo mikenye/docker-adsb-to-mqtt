@@ -11,13 +11,13 @@ while true
         NOW=$(curl --silent "$AIRCRAFT_JSON_URL" | jq '.now' | awk '{print int($0)}')
         MESSAGES=$(curl --silent "$AIRCRAFT_JSON_URL" | jq '.messages')
 
-        nowdelta=$(expr $NOW - $nowold)
-        messagesdelta=$(expr $MESSAGES - $messagesold)
+        nowdelta=$((NOW - nowold))
+        messagesdelta=$((MESSAGES - messagesold))
 
         RATE=$(echo "$messagesdelta $nowdelta /p" | dc)
         AC_POS=$(curl --silent "$AIRCRAFT_JSON_URL" | jq '[.aircraft[] | select(.seen_pos)] | length')
         AC_TOT=$(curl --silent "$AIRCRAFT_JSON_URL" | jq '[.aircraft[] | select(.seen < 60)] | length')
-        DUMP=$(echo "Aircraft:$AC_TOT\nPosition:$AC_POS\nMsg/s:$RATE")
+        DUMP="Aircraft:$AC_TOT\nPosition:$AC_POS\nMsg/s:$RATE"
 
         # echo $DUMP
 
