@@ -92,7 +92,12 @@ while true
 
         OUTPUT_JSON+=" }"
 
-        /usr/bin/mosquitto_pub -h "$MQTT_HOST" -t "$MQTT_PREFIX/$STATION_NAME/ADSB" -m "$OUTPUT_JSON"
+        if [[ -n "$MQTT_USER" ]];
+        then
+            /usr/bin/mosquitto_pub -h "$MQTT_HOST" -u "$MQTT_USER" -P "$MQTT_PASS" -t "$MQTT_PREFIX/$STATION_NAME/ADSB" -m "$OUTPUT_JSON"
+        else
+            /usr/bin/mosquitto_pub -h "$MQTT_HOST" -t "$MQTT_PREFIX/$STATION_NAME/ADSB" -m "$OUTPUT_JSON"
+        fi
 
         sleep 5
 

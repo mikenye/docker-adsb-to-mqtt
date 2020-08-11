@@ -22,6 +22,8 @@ Accordingly, while I make every effort to ensure my code is trustworthy, if you 
 | `STATION_NAME` | Required. |
 | `MQTT_HOST` | Required. MQTT broker. For a list of free public servers, check <https://github.com/mqtt/mqtt.github.io/wiki/public_brokers> |
 | `MQTT_PREFIX` | Required. |
+| `MQTT_USER` | Username for MQTT Host (if required) |
+| `MQTT_PASS` | Password for MQTT Host (if required) |
 
 The MQTT topic will be: `$MQTT_PREFIX/$STATION_NAME/ADSB`.
 
