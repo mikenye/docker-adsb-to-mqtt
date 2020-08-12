@@ -10,7 +10,7 @@ As of August 2020, this container is currently a work-in-progress, and we hope t
 
 ## A Word About Security
 
-The container health checks require that the container has access to the host's docker socket: `/var/run/docker.sock`. 
+The container health checks require that the container has access to the host's docker socket: `/var/run/docker.sock`.
 
 Mounting `/var/run/docker.sock` inside a container effectively gives the container and anything running within it root privileges on the underlying host, since now you can do anything that a root user with group membership of docker can.
 
@@ -72,31 +72,31 @@ Example JSON output is as follows:
 
 ```json
 {
-    "Aircraft": "10",
-    "Positions": "9",
-    "Msgs/sec" : "120",
+    "aircraft": "10",
+    "positions": "9",
+    "msgs_per_sec" : "120",
     "readsb": "1",
     "piaware": "1",
     "adsbx": "1",
     "opensky": "0",
     "fr24": "0"
-} 
+}
 ```
 
 Where:
 
-- `Aircraft` is the number of aircraft you are currently receiving ADS-B messages from
-- `Positions` is the number of aircraft reporting positions
-- `Msgs/sec` is the number of ADS-B messages per second you are receiving
+* `aircraft` is the number of aircraft you are currently receiving ADS-B messages from
+* `positions` is the number of aircraft reporting positions
+* `msgs_per_sec` is the number of ADS-B messages per second you are receiving
 
 If container monitoring is configured/enabled:
 
-- `readsb` reports `1` if docker healthcheck reports the container is healthy, `0` for any other status
-- `piaware` reports `1` if docker healthcheck reports the container is healthy, `0` for any other status
-- `adsbx` reports `1` if docker healthcheck reports the container is healthy, `0` for any other status
-- `opensky` reports `1` if docker healthcheck reports the container is healthy, `0` for any other status
-- `radarbox` reports `1` if docker healthcheck reports the container is healthy, `0` for any other status
-- `fr24` reports `1` if docker healthcheck reports the container is healthy, `0` for any other status
+* `readsb` reports `1` if docker healthcheck reports the container is healthy, `0` for any other status
+* `piaware` reports `1` if docker healthcheck reports the container is healthy, `0` for any other status
+* `adsbx` reports `1` if docker healthcheck reports the container is healthy, `0` for any other status
+* `opensky` reports `1` if docker healthcheck reports the container is healthy, `0` for any other status
+* `radarbox` reports `1` if docker healthcheck reports the container is healthy, `0` for any other status
+* `fr24` reports `1` if docker healthcheck reports the container is healthy, `0` for any other status
 
 ## Getting help
 

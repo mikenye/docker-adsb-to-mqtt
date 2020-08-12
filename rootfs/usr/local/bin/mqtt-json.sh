@@ -26,9 +26,9 @@ while true
         messagesold=$MESSAGES
 
         # Start building output JSON
-        OUTPUT_JSON="{ \"Aircraft\" : \"$AC_TOT\""
-        OUTPUT_JSON+=", \"Positions\" : \"$AC_POS\""
-        OUTPUT_JSON+=", \"Msgs/sec\" : \"$RATE\""
+        OUTPUT_JSON="{ \"aircraft\" : \"$AC_TOT\""
+        OUTPUT_JSON+=", \"positions\" : \"$AC_POS\""
+        OUTPUT_JSON+=", \"msgs_per_sec\" : \"$RATE\""
 
         if [[ -S /var/run/docker.sock ]]; then
 
