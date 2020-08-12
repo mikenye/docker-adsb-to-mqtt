@@ -18,6 +18,23 @@ For example, you could create a container, mount the host's `/etc`, modify confi
 
 Accordingly, while I make every effort to ensure my code is trustworthy, if you decide to give this container access to the host's `/var/run/docker.sock`, you do so at your own risk.
 
+## Up and Running with `docker run`
+
+An example `docker run` syntax is as follows:
+
+```shell
+docker run \
+    -d \
+    -it \
+    --name=adsb2mqtt \
+    --restart=always \
+    -e AIRCRAFT_JSON_URL="http://piaware.home.local:8080/data/aircraft.json" \
+    -e MQTT_HOST="homeassistant.home.local" \
+    -e MQTT_USER="kingroland" \
+    -e MQTT_PASS="12345" \
+    mikenye/adsb-to-mqtt
+```
+
 ## Environment Variables
 
 | Environment Variable | Description |
