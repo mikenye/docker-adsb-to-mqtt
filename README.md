@@ -4,6 +4,10 @@ This container publishes basic statistics regarding ADS-B reception & container 
 
 Based on: <https://www.adsbexchange.com/forum/threads/how-to-monitor-your-feeds-from-mobile-device.621696/>
 
+## Work in Progress
+
+As of August 2020, this container is currently a work-in-progress, and we hope to stabilise features/syntax by the end of the month. If you have any specific requirements or other input, please swing by our [Discord channel](https://discord.gg/sTf9uYF) and discuss! Thanks.
+
 ## A Word About Security
 
 The container health checks require that the container has access to the host's docker socket: `/var/run/docker.sock`. 
@@ -44,3 +48,9 @@ Regarding `AIRCRAFT_JSON_URL`, you need to specify a URL for an `aircraft.json` 
 | `CONTAINERNAME_OPENSKY`  | Optional. If using a [mikenye/opensky-network](https://hub.docker.com/r/mikenye/opensky-network) container, specify the container name. This will enable reporing the container health (as determined from the docker healthcheck status). |
 | `CONTAINERNAME_RADARBOX`  | Optional. If using a [mikenye/radarbox](https://hub.docker.com/r/mikenye/radarbox) container, specify the container name. This will enable reporing the container health (as determined from the docker healthcheck status). |
 | `CONTAINERNAME_FR24`  | Optional. If using a [mikenye/fr24feed](https://hub.docker.com/r/mikenye/fr24feed) container, specify the container name. This will enable reporing the container health (as determined from the docker healthcheck status). |
+
+## Getting help
+
+Please feel free to [open an issue on the project's GitHub](https://github.com/mikenye/docker-adsb-to-mqtt/issues).
+
+I also have a [Discord channel](https://discord.gg/sTf9uYF), feel free to [join](https://discord.gg/sTf9uYF) and converse.
