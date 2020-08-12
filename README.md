@@ -49,6 +49,38 @@ Regarding `AIRCRAFT_JSON_URL`, you need to specify a URL for an `aircraft.json` 
 | `CONTAINERNAME_RADARBOX`  | Optional. If using a [mikenye/radarbox](https://hub.docker.com/r/mikenye/radarbox) container, specify the container name. This will enable reporing the container health (as determined from the docker healthcheck status). |
 | `CONTAINERNAME_FR24`  | Optional. If using a [mikenye/fr24feed](https://hub.docker.com/r/mikenye/fr24feed) container, specify the container name. This will enable reporing the container health (as determined from the docker healthcheck status). |
 
+## Output JSON Format
+
+Example JSON output is as follows:
+
+```json
+{
+    "Aircraft": "10",
+    "Positions": "9",
+    "Msgs/sec" : "120",
+    "readsb": "1",
+    "piaware": "1",
+    "adsbx": "1",
+    "opensky": "0",
+    "fr24": "0"
+} 
+```
+
+Where:
+
+- `Aircraft` is the number of aircraft you are currently receiving ADS-B messages from
+- `Positions` is the number of aircraft reporting positions
+- `Msgs/sec` is the number of ADS-B messages per second you are receiving
+
+If container monitoring is configured/enabled:
+
+- `readsb` reports `1` if docker healthcheck reports the container is healthy, `0` for any other status
+- `piaware` reports `1` if docker healthcheck reports the container is healthy, `0` for any other status
+- `adsbx` reports `1` if docker healthcheck reports the container is healthy, `0` for any other status
+- `opensky` reports `1` if docker healthcheck reports the container is healthy, `0` for any other status
+- `radarbox` reports `1` if docker healthcheck reports the container is healthy, `0` for any other status
+- `fr24` reports `1` if docker healthcheck reports the container is healthy, `0` for any other status
+
 ## Getting help
 
 Please feel free to [open an issue on the project's GitHub](https://github.com/mikenye/docker-adsb-to-mqtt/issues).
