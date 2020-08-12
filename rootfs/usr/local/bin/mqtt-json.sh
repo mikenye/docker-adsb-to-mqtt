@@ -104,6 +104,6 @@ while true
             /usr/bin/mosquitto_pub -h "$MQTT_HOST" -t "$MQTT_TOPIC" -m "$OUTPUT_JSON"
         fi
 
-        sleep 5
+        sleep "$MQTT_INTERVAL"
 
     done
