@@ -1,4 +1,7 @@
-FROM debian:stable-slim    
+FROM debian:stable-slim
+
+ENV MQTT_INTERVAL=5 \
+    MQTT_TOPIC="docker/adsb2mqtt"
 
 COPY rootfs/ /
 

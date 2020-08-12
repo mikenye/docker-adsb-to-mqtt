@@ -19,11 +19,11 @@ Accordingly, while I make every effort to ensure my code is trustworthy, if you 
 | Environment Variable | Description |
 |-----|-----|
 | `AIRCRAFT_JSON_URL` | Required. URL for an `aircraft.json` file provided by readsb/dump1090. |
-| `STATION_NAME` | Required. |
-| `MQTT_HOST` | Required. MQTT broker. For a list of free public servers, check <https://github.com/mqtt/mqtt.github.io/wiki/public_brokers> |
-| `MQTT_PREFIX` | Required. |
-| `MQTT_USER` | Username for MQTT Host (if required) |
-| `MQTT_PASS` | Password for MQTT Host (if required) |
+| `MQTT_HOST` | Required. MQTT broker. For a list of free public servers, check <https://github.com/mqtt/mqtt.github.io/wiki/public_brokers>. |
+| `MQTT_INTERVAL` | Optional. How many seconds between sending MQTT messages. Default: `5`. |
+| `MQTT_USER` | Username for MQTT Host (if required). |
+| `MQTT_PASS` | Password for MQTT Host (if required). |
+| `MQTT_TOPIC` | Optional. Topic for MQTT messages. Defaults to `docker/adsb2mqtt`. |
 
 The MQTT topic will be: `$MQTT_PREFIX/$STATION_NAME/ADSB`.
 

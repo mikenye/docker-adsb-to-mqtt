@@ -21,14 +21,14 @@ while true
         fi
         AC_POS=$(curl --silent "$AIRCRAFT_JSON_URL" | jq '[.aircraft[] | select(.seen_pos)] | length')
         AC_TOT=$(curl --silent "$AIRCRAFT_JSON_URL" | jq '[.aircraft[] | select(.seen < 60)] | length')
-        DUMP="Aircraft:$AC_TOT\nPosition:$AC_POS\nMsg/s:$RATE"
-
-        # echo $DUMP
 
         nowold=$NOW
         messagesold=$MESSAGES
 
-        OUTPUT_JSON="{ \"dump\" : \"$DUMP\""
+        # Start building output JSON
+        OUTPUT_JSON="{ \"Aircraft\" : \"$AC_TOT\""
+        OUTPUT_JSON+=", \"Positions\" : \"$AC_POS\""
+        OUTPUT_JSON+=", \"Msgs/sec\" : \"$RATE\""
 
         if [[ -S /var/run/docker.sock ]]; then
 
@@ -94,13 +94,14 @@ while true
 
         fi
 
+        # Finalise output JSON
         OUTPUT_JSON+=" }"
 
         if [[ -n "$MQTT_USER" ]];
         then
-            /usr/bin/mosquitto_pub -h "$MQTT_HOST" -u "$MQTT_USER" -P "$MQTT_PASS" -t "$MQTT_PREFIX/$STATION_NAME/ADSB" -m "$OUTPUT_JSON"
+            /usr/bin/mosquitto_pub -h "$MQTT_HOST" -u "$MQTT_USER" -P "$MQTT_PASS" -t "$MQTT_TOPIC" -m "$OUTPUT_JSON"
         else
-            /usr/bin/mosquitto_pub -h "$MQTT_HOST" -t "$MQTT_PREFIX/$STATION_NAME/ADSB" -m "$OUTPUT_JSON"
+            /usr/bin/mosquitto_pub -h "$MQTT_HOST" -t "$MQTT_TOPIC" -m "$OUTPUT_JSON"
         fi
 
         sleep 5
