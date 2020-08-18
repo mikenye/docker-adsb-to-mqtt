@@ -45,6 +45,9 @@ docker run \
 | `MQTT_USER` | Username for MQTT Host (if required). |
 | `MQTT_PASS` | Password for MQTT Host (if required). |
 | `MQTT_TOPIC` | Optional. Topic for MQTT messages. Defaults to `docker/adsb2mqtt`. |
+| `FA_JSON_URL` | Optional. URL for PiAware `status.json` file |
+| `FR_JSON_URL` | Optional. URL for FlightRadar24 `monitor.json` file |
+| `PF_JSON_URL` | Optional. URL for planefinder stats |
 
 The MQTT topic will be: `$MQTT_PREFIX/$STATION_NAME/ADSB`.
 
@@ -54,6 +57,12 @@ Regarding `AIRCRAFT_JSON_URL`, you need to specify a URL for an `aircraft.json` 
 * If using a [mikenye/piaware](https://hub.docker.com/r/mikenye/piaware) container: `http://piaware:8080/data/aircraft.json`
 * If using a [mikenye/tar1090](https://hub.docker.com/r/mikenye/tar1090) container: `http://tar1090/data/aircraft.json`
 * If using PiAware on a Raspberry Pi: `http://pi:8080/data/aircraft.json`
+
+Regarding `*_JSON_URL`, you need to specify the URL to connect to the statistics from each feeder. Examples:
+
+* PiAware: `http://{ipaddress}:{port}/status.json`
+* FlightRadar24: `http://{ipaddress}:{port}/monitor.json`
+* Planefinder: `http://{ipaddress}:{port}/ajax/stats`
 
 ## Environment Variables for Container Healthcheck
 
@@ -75,6 +84,7 @@ Example JSON output is as follows:
     "aircraft": "10",
     "positions": "9",
     "msgs_per_sec" : "120",
+    "timestamp" : "1597543070",
     "readsb": "1",
     "piaware": "1",
     "adsbx": "1",
@@ -88,6 +98,7 @@ Where:
 * `aircraft` is the number of aircraft you are currently receiving ADS-B messages from
 * `positions` is the number of aircraft reporting positions
 * `msgs_per_sec` is the number of ADS-B messages per second you are receiving
+* `timestamp` is the timestamp (milliseconds) of last update
 
 If container monitoring is configured/enabled:
 
